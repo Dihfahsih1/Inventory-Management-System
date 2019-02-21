@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block body %}
+    <p>
+        <a href="{% url 'display_cashiers' %}">HOME</a> > <a href="{% url 'expenditurereport' %}">ARCHIVED</a> ><a
+            href="{% url 'salaryarchive' %}"> Salary archives</a>
+    </p><br>
+    <nav class="nav navbar-expand">
+        <ul class="navbar-nav mr-auto">
+
+            <li>
+                <a class="nav-link" href="#">
+                    <button class="btn btn-success">Driver Payments</button>
+                </a>
+            </li>
+            <li class="nav-item {% if url_name == 'expenditurearchive' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'expenditurearchive' %}">
+                    <button class="btn btn-success">Expenses Archive</button>
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" href="{% url 'sundryarchive' %}">
+                    <button class="btn btn-success">Petty Cash Archive</button>
+                </a>
+            </li>
+
+            <li class="nav-item {% if url_name == 'salaryarchive' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'salaryarchive' %}">
+                    <button class="btn btn-default">Salaries Paid Archive</button>
+                </a>
+            </li>
+
+        </ul>
+    </nav>
+    <br>
+
+    <h2>Salaries Paid Monyhly Archived Records</h2>
+
+    <div class="container">
+        <table class="table table-hover" border="2">
+            <thead class="font-weight-bold ">
+            <tr class="success">
+                <td>Date</td>
+                <td>Name</td>
+                <td>Salary Type</td>
+                <td>Amount Paid</td>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            {% for total in queryset %}
+                <tr>
+                    <td>{{ total.Date }}</td>
+                    <td>{{ total.Staff }}</td>
+                    <td>{{ total.Salary_Type }}</td>
+                    <td>{{ total.Amount }}</td>
+                </tr>
+            {% endfor %}<br>
+            <tr>
+                <td class="jumbotron"><h3>TOTAL</h3></td>
+                <td class="jumbotron"><h3>----------------------</h3></td>
+                <td class="jumbotron"><h3>----------------------</h3></td>
+                <td class="jumbotron"><h3>{{ total }}</h3></td>
+            </tr>
+            </tbody>
+        </table>
+        <a href="{% url 'salariespdf' %}">
+            <button class="btn btn-success">Print Report</button>
+        </a>
+    </div>
+
+
+{% endblock %}

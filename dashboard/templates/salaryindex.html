@@ -26,7 +26,7 @@
         <h4>Salaries Paid Report</h4>
         <h5>(Allowances, Advances, Commission and Monthly salaries )</h5>
     </div>
-
+    <p>Please submit the report at the end of the month to be archived</p>
     <table class="table table-hover" border="2">
     <thead class="font-weight-bold ">
     <tr class="success">
@@ -55,7 +55,9 @@
         </tr>
     </tbody>
     </table>
-<a href="#"><button class="btn btn-primary float-md-right">Submit Report</button></a>
+    <a href="{% url 'salaryarchive' %}">
+        <button class="btn btn-primary float-md-right">Submit Report</button>
+    </a>
 <a href="{% url 'salariespdf'  %}"><button class="btn btn-success">Print Report</button></a>
 </div>
 

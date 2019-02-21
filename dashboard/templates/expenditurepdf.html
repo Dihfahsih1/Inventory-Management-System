@@ -57,12 +57,12 @@
             <h3>Generated on - {{ today | date:"d/m/Y" }}</h3>
         </div>
         <div class="list-group">
-            <h2 style="align-content:center" > Main Expenditure Report</h2>
+            <h2 style="align-content:center"> Main Expenditure Report for the month of {{ month }}</h2>
         </div>
 
         <table class="table" border="2">
             <thead>
-            <tr>
+            <tr style="font-size:larger">
                 <th>Date</th>
                 <th>Name</th>
                 <th>Reason</th>
@@ -71,7 +71,7 @@
             </thead>
             <tbody>
             {% for ex in expense %}
-                <tr>
+                <tr style="font-size:large">
 
         <td>{{ ex.Date}}</td>
         <td>{{ ex.PaymentMadeTo}}</td>

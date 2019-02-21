@@ -20,25 +20,28 @@ arial-controls="navbarsExample02" arial-exapanded="false">
               <a class="nav-link" href="{% url 'display_cashiers'  %}"><h2>ACCOUNTANT<span class="sr-only">(current)</span></h2></a>
           </li>
 
-            <h4><li class="nav-item {% if url_name == 'enter_expenditure' %}active{% endif %}">
+             <li class="nav-item {% if url_name == 'enter_expenditure' %}active{% endif %}">
              <a class="nav-link" href="{% url 'enter_expenditure'  %}">Pay Main Expenses</a>
-            </li></h4>
-          <h4><li class="nav-item {% if url_name == 'enter_sundryexpense' %}active{% endif %}">
+             </li>
+             <li class="nav-item {% if url_name == 'enter_sundryexpense' %}active{% endif %}">
               <a class="nav-link" href="{% url 'enter_sundryexpense'  %}">Pay Petty Cash</a>
-          </li></h4>
+             </li>
 
-           <h4><li class="nav-item {% if url_name == 'pay_salary' %}active{% endif %}">
+             <li class="nav-item {% if url_name == 'pay_salary' %}active{% endif %}">
               <a class="nav-link" href="{% url 'pay_salary'  %}">Pay Salary</a>
-          </li></h4>
+             </li>
 
 
-          <h4><li class="nav-item {% if url_name == 'display_viewstaff' %}active{% endif %}">
+             <li class="nav-item {% if url_name == 'display_viewstaff' %}active{% endif %}">
               <a class="nav-link" href="{% url 'display_viewstaff'  %}">View Staff</a>
-          </li></h4>
+             </li>
 
-           <h4><li class="nav-item {% if url_name == 'expenditurereport' %}active{% endif %}">
-              <a class="nav-link" href="{% url 'expenditurereport'  %}">General Reports</a>
-          </li></h4>
+             <li class="nav-item {% if url_name == 'expenditurereport' %}active{% endif %}">
+                 <a class="nav-link" href="{% url 'expenditurereport' %}">Monthly Reports</a>
+             </li>
+             <li class="nav-item {% if url_name == 'expenditurearchive' %}active{% endif %}">
+                 <a class="nav-link" href="{% url 'expenditurearchive' %}">Archived Records</a>
+             </li>
          {% endwith %}
       </ul>
       <!--
@@ -49,7 +52,7 @@ arial-controls="navbarsExample02" arial-exapanded="false">
       </form>-->
   </div>
    <li class="nav-item active float-lg-right" >
-       <a class="nav-link" href="#"><h2>LOG OUT</h2></a>
+       <a class="nav-link" href="#"><h5>LOG OUT</h5></a>
           </li>
 </nav>
 <div class="container">

@@ -56,12 +56,12 @@
         </div>
 
         <div class="list-group">
-            <h2 style="align-content:center" > Sundry Expenditure Report</h2>
+            <h2 style="align-content:center"> Small Expenditure Report for the month of {{ month }}</h2>
         </div>
 
         <table class="table" border="2">
             <thead>
-            <tr>
+            <tr style="font-size:larger">
                 <th>Date</th>
                 <th>Name</th>
                 <th>Reason For Payment</th>
@@ -70,8 +70,7 @@
             </thead>
             <tbody>
             {% for sun in sundry %}
-                <tr>
-
+                <tr style="font-size:large">
         <td>{{ sun.Date}}</td>
         <td>{{ sun.PaymentMadeTo}}</td>
         <td>{{ sun.ReasonForPayment }}</td>

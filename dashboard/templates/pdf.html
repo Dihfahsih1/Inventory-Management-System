@@ -55,12 +55,12 @@
             <h3>Generated on - {{ today | date:"d/m/Y" }}</h3>
         </div>
         <div class="list-group">
-            <h2 style="align-content:center" > Salaries Paid Report</h2>
+            <h2 style="align-content:center"> Monthly Salaries Paid Report for the month of {{ month }}</h2>
         </div>
 
         <table class="table" border="2">
             <thead>
-            <tr>
+            <tr style="font-size:larger">
                 <th>Date</th>
                 <th>Name</th>
                 <th>Salary Type</th>
@@ -69,7 +69,7 @@
             </thead>
             <tbody>
             {% for salary in salaries %}
-                <tr>
+                <tr style="font-size:large">
                     <td>{{ salary.Date }}</td>
                     <td>{{ salary.Staff}}</td>
                     <td>{{ salary.Salary_Type}}</td>

@@ -1,5 +1,6 @@
 from django.conf.urls import url
-from .import views
+
+from . import views
 
 urlpatterns=[
 url(r'^$', views.index ,name='index'),
@@ -22,4 +23,8 @@ url(r'^expenditurepdf/', views.expenditurepdf.as_view() ,name='expenditurepdf'),
 url(r'^expensereceipt/', views.expensereceipt.as_view() ,name='expensereceipt'),
 url(r'^salaryreceipt/', views.salaryreceipt.as_view() ,name='salaryreceipt'),
 url(r'^sundryreceipt/', views.sundryreceipt.as_view() ,name='sundryreceipt'),
+
+    url(r'^expenditurearchive/', views.expenditurearchive, name='expenditurearchive'),
+    url(r'^salaryarchive/', views.salaryarchive, name='salaryarchive'),
+    url(r'^sundryarchive/', views.sundryarchive, name='sundryarchive'),
         ]
