@@ -41,7 +41,7 @@ class Salary(models.Model):
     Staff = models.ForeignKey(StaffDetails,on_delete=models.CASCADE, blank=False)
     Month = models.CharField(max_length=12,choices=months, default="Month of Pay")
     Amount = models.IntegerField(default=0)
-
+    AmountInWords = models.TextField(max_length=500, blank=False, default='amount in words')
     def __str__(self):
         return self.Staff
 
@@ -50,7 +50,7 @@ class Sundry(Model):
     PaymentMadeTo = models.CharField(max_length=100, default="Canon", blank=False)
     ReasonForPayment = models.TextField(max_length=25, default="Only relatively small expense")
     Amount = models.IntegerField(default=0)
-
+    AmountInWords = models.TextField(max_length=500, blank=False, default='amount in words')
     def __str__(self):
         return self.PaymentMadeTo
 
@@ -62,19 +62,9 @@ class Spend(models.Model):
     PaymentMadeTo = models.CharField(max_length=100, default="Canon", blank=False)
     ReasonForPayment = models.CharField(max_length=100, choices=reason)
     Amount = models.IntegerField(default=0)
-    ReceivedBy = models.CharField(max_length=100, blank=False,default='receptionist')
-    ApprovedBy = models.CharField(max_length=100, blank=False,default='receptionist')
+    AmountInWords = models.TextField(max_length=500, blank=False,default='amount in words')
+    ReceivedBy = models.CharField(max_length=100, blank=False,default='Receiptionist')
+    ApprovedBy = models.CharField(max_length=100, blank=False,default='Manager')
 
     def __str__(self):
         return self.PaymentMadeTo
-
-
-
-#class Report(models.Model):
-
-
-
-
-
-
-

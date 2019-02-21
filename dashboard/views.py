@@ -26,11 +26,10 @@ def pay_salary(request):
         form=SalaryForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('salaryreport')
+            return redirect('salaryreceipt')
     else:
         form=SalaryForm()
         return render(request, 'add_new.html',{'form':form})
-
 
 
 # recording the major expenditures
@@ -39,7 +38,7 @@ def enter_expenditure(request):
         form=SpendForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect ('expenditurereport')
+            return redirect ('expensereceipt')
     else:
         form=SpendForm()
         return render(request, 'add_new.html',{'form':form})
@@ -50,7 +49,7 @@ def enter_sundryexpense(request):
         form=SundryForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect ('sundryreport')
+            return redirect ('sundryreceipt')
     else:
         form=SundryForm()
         return render(request, 'add_new.html',{'form':form})
@@ -161,6 +160,48 @@ class sundrypdf(View):
         return Render.render('sundrypdf.html',sundrycontext)
 
 
+        ####################################################
+        #        ARCHIVING OF THE MONTHLY REPORTS          #
+        ####################################################
 
+
+
+
+        ####################################################
+        #       PRINTING THE RECEIPTS                      #
+        ####################################################
+
+class expensereceipt(View):
+    def get(self, request):
+        expense = Spend.objects.all().filter().last()
+        today = timezone.now()
+        expensecontext = {
+            'today': today,
+            'expense': expense,
+            'request': request,
+        }
+        return Render.render('expensereceipt.html', expensecontext)
+
+class salaryreceipt(View):
+    def get(self, request):
+        salary= Salary.objects.all().filter().last()
+        today = timezone.now()
+        salarycontext = {
+            'today': today,
+            'salary': salary,
+            'request': request,
+        }
+        return Render.render('salaryreceipt.html', salarycontext)
+
+class sundryreceipt(View):
+    def get(self, request):
+        sundry = Sundry.objects.all().filter().last()
+        today = timezone.now()
+        sundrycontext = {
+            'today': today,
+            'sundry': sundry,
+            'request': request,
+        }
+        return Render.render('sundryreceipt.html', sundrycontext)
 
 

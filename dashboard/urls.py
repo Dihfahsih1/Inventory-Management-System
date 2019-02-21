@@ -18,4 +18,8 @@ url(r'^expenditurereport/', views.expenditurereport, name='expenditurereport'),
 url(r'^salariespdf/', views.salariespdf.as_view() ,name='salariespdf'),
 url(r'^sundrypdf/', views.sundrypdf.as_view() ,name='sundrypdf'),
 url(r'^expenditurepdf/', views.expenditurepdf.as_view() ,name='expenditurepdf'),
-    ]
+
+url(r'^expensereceipt/', views.expensereceipt.as_view() ,name='expensereceipt'),
+url(r'^salaryreceipt/', views.salaryreceipt.as_view() ,name='salaryreceipt'),
+url(r'^sundryreceipt/', views.sundryreceipt.as_view() ,name='sundryreceipt'),
+        ]
