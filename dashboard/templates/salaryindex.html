@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block body %}
-
-    <h2>Financial reports</h2>
+    <br>
+    <h2>Salaries paid Report for the month of {{ month }}</h2><br>
     <nav class="nav navbar-expand">
       <ul class="navbar-nav mr-auto">
 
@@ -55,11 +55,15 @@
         </tr>
     </tbody>
     </table>
+
+</div>
+
     <a href="{% url 'salaryarchive' %}">
         <button class="btn btn-primary float-md-right">Submit Report</button>
     </a>
-<a href="{% url 'salariespdf'  %}"><button class="btn btn-success">Print Report</button></a>
-</div>
+    <a href="{% url 'salariespdf' %}">
+        <button class="btn btn-success">Print Report</button>
+    </a>
 
 
 {% endblock %}

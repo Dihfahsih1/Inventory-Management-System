@@ -23,8 +23,13 @@ arial-controls="navbarsExample02" arial-exapanded="false">
              <li class="nav-item {% if url_name == 'enter_expenditure' %}active{% endif %}">
              <a class="nav-link" href="{% url 'enter_expenditure'  %}">Pay Main Expenses</a>
              </li>
+
+             <li class="nav-item {% if url_name == 'add_staff' %}active{% endif %}">
+                 <a class="nav-link" href="{% url 'add_staff' %}">Add Staff</a>
+             </li>
+
              <li class="nav-item {% if url_name == 'enter_sundryexpense' %}active{% endif %}">
-              <a class="nav-link" href="{% url 'enter_sundryexpense'  %}">Pay Petty Cash</a>
+                 <a class="nav-link" href="{% url 'enter_sundryexpense' %}">Small Expenses</a>
              </li>
 
              <li class="nav-item {% if url_name == 'pay_salary' %}active{% endif %}">

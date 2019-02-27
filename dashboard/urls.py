@@ -5,6 +5,7 @@ from . import views
 urlpatterns=[
 url(r'^$', views.index ,name='index'),
 url(r'^display_cashiers/', views.display_cashiers, name='display_cashiers'),
+        url(r'^add_staff/', views.add_staff, name='add_staff'),
 url(r'^display_viewstaff/', views.display_viewstaff, name='display_viewstaff'),
 
 url(r'^enter_expenditure/', views.enter_expenditure, name='enter_expenditure'),
@@ -24,7 +25,11 @@ url(r'^expensereceipt/', views.expensereceipt.as_view() ,name='expensereceipt'),
 url(r'^salaryreceipt/', views.salaryreceipt.as_view() ,name='salaryreceipt'),
 url(r'^sundryreceipt/', views.sundryreceipt.as_view() ,name='sundryreceipt'),
 
-    url(r'^expenditurearchive/', views.expenditurearchive, name='expenditurearchive'),
-    url(r'^salaryarchive/', views.salaryarchive, name='salaryarchive'),
-    url(r'^sundryarchive/', views.sundryarchive, name='sundryarchive'),
+        url(r'^expenditurearchive/', views.expenditurearchive, name='expenditurearchive'),
+        url(r'^salaryarchive/', views.salaryarchive, name='salaryarchive'),
+        url(r'^sundryarchive/', views.sundryarchive, name='sundryarchive'),
+
+        url(r'^expenditurearchivepdf/', views.expenditurearchivepdf, name='expenditurearchivepdf'),
+        url(r'^salaryarchivepdf/', views.salaryarchivepdf, name='salaryarchivepdf'),
+        url(r'^sundryarchivepdf/', views.sundryarchivepdf, name='sundryarchivepdf'),
         ]

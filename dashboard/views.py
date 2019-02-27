@@ -20,6 +20,18 @@ def display_cashiers(request):
     #        ENTERING RECORDS INTO THE DATABASE        #
     ####################################################
 
+
+# Adding Staff
+def add_staff(request):
+    if request.method == "POST":
+        form = StaffDetailsForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('display_viewstaff')
+    else:
+        form = StaffDetailsForm()
+        return render(request, 'add_new.html', {'form': form})
+
  # payment of salaries
 def pay_salary(request):
     if request.method=="POST":
@@ -71,41 +83,49 @@ def display_viewstaff(request):
 def salaryreport (request):
     current_month = datetime.now().month
     queryset = Salary.objects.all().filter(Date__month=current_month).order_by('-Date')
-  total = 0
-  for instance in queryset:
+    today = timezone.now()
+    month = today.strftime('%B')
+    total = 0
+    for instance in queryset:
       total+=instance.Amount
-  context = {
+    context = {
+        'month': month,
       'queryset':queryset,
       'total': total,
-  }
-  return render(request, 'salaryindex.html', context)
+    }
+    return render(request, 'salaryindex.html', context)
 
 #def expenditurereport(request):
 def expenditurereport (request):
     current_month = datetime.now().month
     queryset = Spend.objects.all().filter(Date__month=current_month).order_by('-Date')
-  total = 0
-  for instance in queryset:
+    today = timezone.now()
+    month = today.strftime('%B')
+    total = 0
+    for instance in queryset:
       total+=instance.Amount
-  context = {
+    context = {
+        'month': month,
       'queryset':queryset,
       'total': total,
-  }
-  return render(request, 'expenditureindex.html', context)
+    }
+    return render(request, 'expenditureindex.html', context)
 
 #calculating totals in sundryexpense report
 def sundryreport (request):
     current_month = datetime.now().month
     queryset = Sundry.objects.filter(Date__month=current_month).order_by('-Date')
-  total = 0
-  for instance in queryset:
-      total+=instance.Amount
-  context = {
-      'queryset':queryset,
-      'total': total,
-  }
-  return render(request, 'sundryindex.html', context)
-
+    today = timezone.now()
+    month = today.strftime('%B')
+    total = 0
+    for instance in queryset:
+        total += instance.Amount
+    context = {
+        'month': month,
+        'queryset': queryset,
+        'total': total,
+    }
+    return render(request, 'sundryindex.html', context)
 
 
        ####################################################
@@ -229,8 +249,6 @@ def salaryarchive(request):
     }
     return render(request, 'salaryarchive.html', context)
 
-
-# def expenditurereport(request):
 def expenditurearchive(request):
     queryset = Spend.objects.all().order_by('-Date')
     total = 0
@@ -254,3 +272,60 @@ def sundryarchive(request):
         'total': total,
     }
     return render(request, 'sundryarchive.html', context)
+
+
+    ####################################################
+    #        GENERATING REPORTS IN FORM OF ANNUAL PDFS         #
+    ####################################################
+
+
+# Printing Expenditure archived Report
+class expenditurearchivepdf(View):
+    def get(self, request):
+        expense = Spend.objects.all().order_by('-Date')
+        today = timezone.now()
+        month = today.strftime('%B')
+        totalexpense = 0
+        for instance in expense:
+            totalexpense += instance.Amount
+        expensecontext = {
+            'today': today,
+            'expense': expense,
+            'request': request,
+            'totalexpense': totalexpense,
+        }
+        return Render.render('expenditurearchivepdf.html', expensecontext)
+
+
+# Printing Salaries archived Report
+class salaryarchivepdf(View):
+    def get(self, request):
+        salaries = Salary.objects.all().order_by('-Date')
+        today = timezone.now()
+        totalsalary = 0
+        for instance in salaries:
+            totalsalary += instance.Amount
+        salarycontext = {
+            'today': today,
+            'salaries': salaries,
+            'request': request,
+            'totalsalary': totalsalary,
+        }
+        return Render.render('salaryarchivepdf.html', salarycontext)
+
+
+# Printing Sundry Expenses archived Report
+class sundryarchivepdf(View):
+    def get(self, request):
+        sundry = Sundry.objects.all().order_by('-Date')
+        today = timezone.now()
+        totalsundry = 0
+        for instance in sundry:
+            totalsundry += instance.Amount
+        sundrycontext = {
+            'today': today,
+            'sundry': sundry,
+            'request': request,
+            'totalsundry': totalsundry,
+        }
+        return Render.render('sundryarchivepdf.html', sundrycontext)
