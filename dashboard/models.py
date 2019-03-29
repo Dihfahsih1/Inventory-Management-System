@@ -4,6 +4,7 @@ from django.db.models import Model
 from django.db.models import Sum
 
 class StaffDetails(models.Model):
+    image = models.ImageField(upload_to="media", default="Photo")
     FistName= models.CharField(max_length=150, default="1st name",blank=False)
     SecondName = models.CharField(max_length=150, default="2nd name",blank=False)
     Salary = models.IntegerField(default=0)
@@ -62,9 +63,49 @@ class Spend(models.Model):
     PaymentMadeTo = models.CharField(max_length=100, default="Canon", blank=False)
     ReasonForPayment = models.CharField(max_length=100, choices=reason)
     Amount = models.IntegerField(default=0)
-    AmountInWords = models.TextField(max_length=500, blank=False,default='amount in words')
-    ReceivedBy = models.CharField(max_length=100, blank=False,default='Receiptionist')
-    ApprovedBy = models.CharField(max_length=100, blank=False,default='Manager')
+    AmountInWords = models.TextField(max_length=500, blank=False)
+    ReceivedBy = models.CharField(max_length=100, blank=False)
+    ApprovedBy = models.CharField(max_length=100, blank=False)
 
     def __str__(self):
-        return self.PaymentMadeTo
+        return 'Name:{0}, Reason:{1}, Amount: {2}'.format(self.PaymentMadeTo, self.ReasonForPayment, self.Amount)
+
+##########################################
+#REPORT ARCHIVING MODELS AFTER SUBMISSION #
+##########################################
+class ExpensesReportArchive(models.Model):
+    Date = models.DateField(default=now())
+    Name = models.CharField(max_length=100, default='Name', null=True)
+    Amount = models.FloatField(default=0.0, null=True)
+    Reason = models.CharField(max_length=100,null=True)
+    ReceivedBy = models.CharField(max_length=100, blank=False, default="Name")
+    ApprovedBy = models.CharField(max_length=100, blank=False,default="Name")
+    month = models.CharField(max_length=100,null=True)
+    year = models.CharField(max_length=100,null=True)
+
+    def __str__(self):
+        return 'Name: {1} Reason:{2} Amount:{0}'.format(self.Name,self.Reason, self.Amount)
+class SundryReportArchive(models.Model):
+    Date = models.DateField(default=now())
+    Name = models.CharField(max_length=100, default='Name', null=True)
+    Amount = models.FloatField(default=0.0, null=True)
+    Reason = models.CharField(max_length=100,null=True)
+    ReceivedBy = models.CharField(max_length=100, blank=False, default="Name")
+    ApprovedBy = models.CharField(max_length=100, blank=False, default="Name")
+    month = models.CharField(max_length=100,null=True)
+    year = models.CharField(max_length=100,null=True)
+
+    def __str__(self):
+        return 'Name: {1} Reason:{2} Amount:{0}'.format(self.Name,self.Reason, self.Amount)
+
+class SalaryReportArchive(models.Model):
+    Date = models.DateField(default=now())
+    Salary_Type = models.CharField(max_length=100,null=True)
+    Staff = models.CharField( max_length=100,null=True)
+    Month = models.CharField(max_length=100,null=True)
+    Amount = models.IntegerField(default=0)
+    archivedmonth = models.CharField(max_length=100,null=True)
+    archivedyear = models.CharField(max_length=100,null=True)
+
+    def __str__(self):
+        return 'Name: {1}  Amount:{0}'.format(self.Staff, self.Amount)

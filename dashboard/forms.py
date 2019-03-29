@@ -20,6 +20,5 @@ class SalaryForm(forms.ModelForm):
 class StaffDetailsForm(forms.ModelForm):
     class Meta:
         model=StaffDetails
-        fields=('FistName','SecondName','Salary','Role','Duties','Sex','Contact')
-
+        fields=('image','FistName','SecondName','Salary','Role','Duties','Sex','Contact')
 

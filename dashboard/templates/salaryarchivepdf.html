@@ -70,26 +70,21 @@
             <tr style="font-size:larger">
                 <th>Date</th>
                 <th>Name</th>
-                <th>Salary Type</th>
+                <th>Month</th>
                 <th>Amount</th>
             </tr>
             </thead>
             <tbody>
-            {% for salary in salaries %}
+            {% for salary in archived_salary  %}
                 <tr style="font-size:large">
                     <td>{{ salary.Date }}</td>
                     <td>{{ salary.Staff }}</td>
-                    <td>{{ salary.Salary_Type }}</td>
+                    <td>{{ salary.Manth }}</td>
                     <td>Shs:{{ salary.Amount }}</td>
 
                 </tr>
             {% endfor %}
-            <tr>
-                <td class="jumbotron"><h3>TOTAL</h3></td>
-                <td class="jumbotron"><h3>----------------------</h3></td>
-                <td class="jumbotron"><h3>----------------------</h3></td>
-                <td class="jumbotron"><h3>Shs. {{ total }}</h3></td>
-            </tr>
+            <tr><td><b>Total Amount:</b> </td> <td>______________ </td> <td>______________  </td><td><b>{{ total_amount}}</b></td></tr>
             </tbody>
         </table>
     </div>

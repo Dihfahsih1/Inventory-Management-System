@@ -71,16 +71,16 @@
             <tr style="font-size:larger">
                 <th>Date</th>
                 <th>Name</th>
-                <th>Reason For Payment</th>
+                <th>Reason </th>
                 <th>Amount</th>
             </tr>
             </thead>
             <tbody>
-            {% for sun in sundry %}
+            {% for sun in archived_sundry %}
                 <tr style="font-size:large">
                     <td>{{ sun.Date }}</td>
-                    <td>{{ sun.PaymentMadeTo }}</td>
-                    <td>{{ sun.ReasonForPayment }}</td>
+                    <td>{{ sun.Name }}</td>
+                    <td>{{ sun.Reason }}</td>
                     <td>{{ sun.Amount }}</td>
                 </tr>
             {% endfor %}
@@ -88,7 +88,7 @@
                 <td class="jumbotron"><h3>TOTAL</h3></td>
                 <td class="jumbotron"><h3>----------------------</h3></td>
                 <td class="jumbotron"><h3>----------------------</h3></td>
-                <td class="jumbotron"><h3>Shs. {{ totalsundry }}</h3></td>
+                <td class="jumbotron"><h3>Shs. {{ total_amount }}</h3></td>
             </tr>
             </tbody>
         </table>
